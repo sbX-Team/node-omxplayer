@@ -20,9 +20,9 @@ function buildArgs (source, givenOutput, loop, initialVolume, showOsd) {
 
 	if (givenOutput) {
 
-		if (ALLOWED_OUTPUTS.indexOf(givenOutput) === -1) {
+		// if (ALLOWED_OUTPUTS.indexOf(givenOutput) === -1) {
 			throw new Error(`Output ${givenOutput} not allowed.`);
-		}
+		// }
 
 		output = givenOutput;
 
