@@ -13,7 +13,7 @@ const ALLOWED_OUTPUTS = ['hdmi', 'local', 'both', 'alsa']
 // ----- Functions ----- //
 
 // Creates an array of arguments to pass to omxplayer.
-function buildArgs (source, givenOutput, loop, initialVolume, showOsd, rotation) {
+function buildArgs (source, givenOutput, loop, initialVolume, showOsd, orientation) {
   let output = ''
 
   if (givenOutput) {
@@ -30,14 +30,14 @@ function buildArgs (source, givenOutput, loop, initialVolume, showOsd, rotation)
   if (showOsd) {
     osd = showOsd
   }
-  let rot = false
-  if (rotation) {
-    rot = rotation
+  let ori = false
+  if (orientation) {
+    ori = orientation
   } else {
-    rot = 0
+    ori = 0
   }
 
-  const args = [source, '-o', output, '--blank', '--rotation', rot, osd ? '' : '--no-osd' ]
+  const args = [source, '-o', output, '--blank', '--orientation', ori, osd ? '' : '--no-osd' ]
 
   // Handle the loop argument, if provided
   if (loop) {
@@ -54,7 +54,7 @@ function buildArgs (source, givenOutput, loop, initialVolume, showOsd, rotation)
 
 // ----- Omx Class ----- //
 
-function Omx (source, output, loop, initialVolume, showOsd) {
+function Omx (source, output, loop, initialVolume, showOsd, orientation) {
   // ----- Local Vars ----- //
 
   const omxplayer = new EventEmitter()
@@ -76,8 +76,8 @@ function Omx (source, output, loop, initialVolume, showOsd) {
   }
 
   // Spawns the omxplayer process.
-  function spawnPlayer (src, out, loop, initialVolume, showOsd, rotation) {
-    const args = buildArgs(src, out, loop, initialVolume, showOsd, rotation)
+  function spawnPlayer (src, out, loop, initialVolume, showOsd, orientation) {
+    const args = buildArgs(src, out, loop, initialVolume, showOsd, orientation)
     console.log('args for omxplayer:', args)
     const omxProcess = spawn('omxplayer', args)
     open = true
