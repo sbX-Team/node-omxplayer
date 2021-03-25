@@ -37,7 +37,7 @@ function buildArgs (source, givenOutput, loop, initialVolume, showOsd, orientati
     ori = 0
   }
 
-  const args = [source, '-o', output, '--blank', '--orientation', ori, osd ? '' : '--no-osd' ]
+  const args = [source, '-o', output, '--orientation', ori, osd ? '' : '--no-osd' ]
 
   // Handle the loop argument, if provided
   if (loop) {
