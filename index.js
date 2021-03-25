@@ -104,7 +104,7 @@ function Omx (source, output, loop, initialVolume, showOsd, orientation) {
   // ----- Setup ----- //
 
   if (source) {
-    player = spawnPlayer(source, output, loop, initialVolume, showOsd)
+    player = spawnPlayer(source, output, loop, initialVolume, showOsd, orientation)
   }
 
   // ----- Methods ----- //
@@ -112,11 +112,11 @@ function Omx (source, output, loop, initialVolume, showOsd, orientation) {
   // Restarts omxplayer with a new source.
   omxplayer.newSource = (src, out, loop, initialVolume, showOsd) => {
     if (open) {
-      player.on('close', () => { player = spawnPlayer(src, out, loop, initialVolume, showOsd) })
+      player.on('close', () => { player = spawnPlayer(src, out, loop, initialVolume, showOsd, orientation) })
       player.removeListener('close', updateStatus)
       writeStdin('q')
     } else {
-      player = spawnPlayer(src, out, loop, initialVolume, showOsd)
+      player = spawnPlayer(src, out, loop, initialVolume, showOsd, orientation)
     }
   }
 
