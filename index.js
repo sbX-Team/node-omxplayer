@@ -30,14 +30,14 @@ function buildArgs (source, givenOutput, loop, initialVolume, showOsd, rotation)
   if (showOsd) {
     osd = showOsd
   }
-  let osd = false
-  if(rotation){
-	rot = rotation
+  let rot = false
+  if (rotation) {
+    rot = rotation
   } else {
-	rot = 0
+    rot = 0
   }
 
-  const args = [source, '-o', output, '--blank',  '--rotation', rot, osd ? '' : '--no-osd',]
+  const args = [source, '-o', output, '--blank', '--rotation', rot, osd ? '' : '--no-osd' ]
 
   // Handle the loop argument, if provided
   if (loop) {
